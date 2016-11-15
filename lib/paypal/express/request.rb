@@ -89,9 +89,14 @@ module Paypal
         params = {
           :TOKEN => token
         }
-        params.merge! recurring_profile.to_params
-        response = self.request :CreateRecurringPaymentsProfile, params
-        Response.new response
+        params.merge!(recurring_profile.to_params)
+
+        puts "== DEBUGGING PAYPAL Request#subscribe! =="
+        puts "about to make a request to PayPal with :CreateRecurringPaymentsProfile and params:\n#{params}"
+        puts "=========================================="
+
+        response = self.request(:CreateRecurringPaymentsProfile, params)
+        Response.new(response)
       end
 
       def subscription(profile_id)
