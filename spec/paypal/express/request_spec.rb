@@ -1,5 +1,4 @@
-require 'spec_helper.rb'
-
+# rspec spec/paypal/express/request_spec.rb
 describe Paypal::Express::Request do
   class Paypal::Express::Request
     attr_accessor :_sent_params_, :_method_

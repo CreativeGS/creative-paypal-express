@@ -29,11 +29,14 @@ module Paypal
         }.each do |option_key, param_key|
           params[param_key] = options[option_key] if options[option_key]
         end
+
         Array(payment_requests).each_with_index do |payment_request, index|
           params.merge! payment_request.to_params(index)
         end
-        response = self.request :SetExpressCheckout, params
-        Response.new response, options
+
+        response = self.request(:SetExpressCheckout, params)
+
+        Response.new(response, options)
       end
 
       def details(token)
@@ -95,8 +98,8 @@ module Paypal
         params = {
           :PROFILEID => profile_id
         }
-        response = self.request :GetRecurringPaymentsProfileDetails, params
-        Response.new response
+        response = self.request(:GetRecurringPaymentsProfileDetails, params)
+        Response.new(response)
       end
 
       def renew!(profile_id, action, options = {})
@@ -122,7 +125,6 @@ module Paypal
       def reactivate!(profile_id, options = {})
         renew!(profile_id, :Reactivate, options)
       end
-
 
       # Reference Transaction Specific
 
@@ -166,7 +168,6 @@ module Paypal
         response = self.request :BillAgreementUpdate, params
         Response.new response
       end
-
 
       # Refund Specific
 

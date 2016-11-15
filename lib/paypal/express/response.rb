@@ -13,6 +13,11 @@ module Paypal
       #   :VERSION=>"66.0"
       # }
       def initialize(response, options = {})
+        puts "== DEBUGGING PAYPAL Response#initialize =="
+        puts "response:\n#{response}"
+        puts "options:\n#{options}"
+        puts "=========================================="
+
         super response
         @pay_on_paypal = options[:pay_on_paypal]
         @mobile        = options[:mobile]

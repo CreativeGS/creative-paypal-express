@@ -83,3 +83,5 @@ require 'paypal/payment/recurring'
 require 'paypal/payment/recurring/activation'
 require 'paypal/payment/recurring/billing'
 require 'paypal/payment/recurring/summary'
+
+CreativePaypalExpress = Paypal
