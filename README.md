@@ -11,10 +11,8 @@ gem "creative-paypal-express", "~> 1.0.0"
 ```
 
 ## Usage
-
 See Wiki on Github
 https://github.com/nov/paypal-express/wiki
 
 ## Copyright
-
 Copyright (c) 2011 nov matake. See LICENSE for details.

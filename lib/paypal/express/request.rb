@@ -3,7 +3,6 @@ module Paypal
     class Request < NVP::Request
 
       # Common
-
       def setup(payment_requests, return_url, cancel_url, options = {})
         params = {
           :RETURNURL => return_url,
@@ -175,7 +174,6 @@ module Paypal
       end
 
       # Refund Specific
-
       def refund!(transaction_id, options = {})
         params = {
           :TRANSACTIONID => transaction_id,
