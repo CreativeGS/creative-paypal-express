@@ -1,0 +1,32 @@
+version: 2
+jobs:
+  build:
+    working_directory: ~/cpe
+    docker:
+      # Ruby 2.3.6
+      - image: circleci/ruby@sha256:fe6dc4cb331a26870b20a7fa79bae769aa575b4c4a385c986632eacb76b909f6
+        environment:
+          TZ: "/usr/share/zoneinfo/Europe/Riga"
+          RAILS_ENV: test
+          COV: "false"
+
+    steps:
+      - checkout
+
+      - run: gem install bundler -v 1.16.2 --no-doc
+
+      - restore_cache:
+          key: v1-{{ checksum "creative-paypal-express.gemspec" }}
+
+      - run: bundle install --path ~/vendor/bundle
+
+      #== save caches ==
+
+      - save_cache:
+          key: v1-{{ checksum "creative-paypal-express.gemspec" }}
+          paths:
+            - ~/vendor/bundle
+
+      # == run specs ==
+
+      - run: rspec spec/
